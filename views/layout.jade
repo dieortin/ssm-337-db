@@ -1,0 +1,41 @@
+doctype html
+html
+  head
+    title= title + " | San Miguel DB"
+    meta(name='author', content='Diego Ortín Fernández <dieortin@gmail.com>')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/members.js')
+  body
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', 
+          aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') #{title}
+        #navbar.navbar-collapse.collapse
+          ul.nav.navbar-nav.navbar-right
+            mixin navbarlink(href, label)
+              if title===label
+                li.active(role='presentation')
+                  a(href=href)= label
+              else
+                li(role='presentation')
+                  a(href=href)= label
+            +navbarlink('/', 'Inicio')
+            +navbarlink('members', 'Miembros')
+            +navbarlink('#', 'Actividades')
+    block content
+    .container
+      hr
+      footer
+        p &copy; Scouts San Miguel 2015
+    script(src='/javascripts/jquery.min.js')
+    script(src='/javascripts/bootstrap.min.js')
+    script(src='/javascripts/ie10-viewport-bug-workaround.js')

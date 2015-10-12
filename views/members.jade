@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  .container
+    h2 List of members
+    .table-responsive
+      table.table.table-striped
+        thead
+          tr
+            th Name
+            th Surnames
+            th Date of birth
+            th
+        tbody
+          tr
+            td: input(type='text', autocomplete='off', id='newMember-name', value='', placeholder='Name')
+            td: input(type='text', autocomplete='off', id='newMember-surnames', value='', placeholder='Surnames')
+            td: input(type='date', autocomplete='off', id='newMember-birthDate', value='', placeholder='9/4/1998')
+            td: button.btn.btn-sm.btn-success(type='button', onclick='retrieveAndSendNewMemberData(addMemberRequest)') 
+              span.glyphicon.glyphicon-ok(aria-hidden='true') 
+              |  Add
+          for member, i in members
+            tr
+              td= member.name
+              td= member.surnames
+              td #{member.birthDate.getDate()}/#{member.birthDate.getMonth() + 1}/#{member.birthDate.getFullYear()}
+              td: .dropdown
+                button.btn.btn-xs.dropdown-toggle(type='button', id='optionsDropdown-#{i}', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                  span.glyphicon.glyphicon-cog(aria-hidden='true')
+                ul.dropdown-menu(aria-labelledby='optionsDropdown-#{i}')
+                  li: a(href='#', onclick='removeMemberRequest("#{member.id}")') Remove
+
+
