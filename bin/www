@@ -21,7 +21,7 @@ var env = habitat.load(nodeEnv + '.env');
  */
 
 var port = normalizePort(env.get('serverPort') || '3000');
-app.set('port', port);
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT);
 app.set('ip', process.env.OPENSHIFT_NODEJS_IP);
 
 /**
